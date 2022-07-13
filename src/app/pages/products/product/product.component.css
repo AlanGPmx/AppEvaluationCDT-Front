@@ -1,6 +1,6 @@
 .card {
   margin: 5px;
-  min-height: 250px;
+  min-height: 405px;
   min-width: 400px;
   max-width: 400px;
   height: 100%;
@@ -12,4 +12,8 @@ button {
   right: 10px;
   left: 10px;
   bottom: 10px;
+}
+
+.mat-form-field{
+  width:100% !important;
 }
