@@ -11,13 +11,16 @@ import { LayoutComponent } from './layout/layout.component';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './shared/components/header/header.module';
+import { SingleViewComponent } from './pages/products/single-view/single-view.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { LayoutModule } from './layout/layout.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    LayoutComponent,
+    SingleViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,9 +30,10 @@ import { HeaderModule } from './shared/components/header/header.module';
     MaterialModule,
     MdbCarouselModule,
     HttpClientModule,
-    HeaderModule
+    HeaderModule,
+    MatFormFieldModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
