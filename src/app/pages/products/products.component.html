@@ -1,4 +1,6 @@
-<app-header></app-header>
+<ng-container *ngIf="showMenu">
+  <app-header></app-header>
+</ng-container>
 
 <section class="products">
   <app-product [product]="product" *ngFor="let product of products" (addToCartClick)="addToCart($event)"></app-product>

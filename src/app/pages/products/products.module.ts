@@ -18,6 +18,7 @@ import { MaterialModule } from 'src/app/material.module';
     ProductsRoutingModule,
     HeaderModule,
     MaterialModule,
-  ]
+  ],
+  exports: [ProductsComponent]
 })
 export class ProductsModule { }
