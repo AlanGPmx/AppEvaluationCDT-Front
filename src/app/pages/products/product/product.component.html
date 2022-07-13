@@ -1,14 +1,47 @@
 <mat-card class="card">
-  <mat-card-header>
-    <mat-card-title>{{ product.name }}</mat-card-title>
-  </mat-card-header>
+  <mat-card-title>{{ product.name }}</mat-card-title>
+  <mat-card-subtitle
+    ><ng-container *ngIf="isNumber(product.withDiscount); else normalPrice"
+      ><s>{{ product.price | currency }}</s> -
+      <b>{{ product.withDiscount | currency }}</b></ng-container
+    >
+    <ng-template #normalPrice>{{ product.price | currency }}</ng-template>
+  </mat-card-subtitle>
+  <img mat-card-md-image src="{{ product.img }}" />
   <mat-card-content>
-    {{ product.description }}
+    <p>
+      {{ product.description | slice: 0:120 }}...<br />
+      <ng-container *ngIf="true">
+        <a href="http://">Ver más...</a>
+      </ng-container>
+    </p>
+    <ng-container *ngIf="product.options.length > 0">
+      <mat-form-field appearance="fill">
+        <mat-label>Elige una opción...</mat-label>
+        <mat-select
+          name="options"
+          (valueChange)="allowAddToCart()"
+          (selectionChange)="changeOption($event.value)"
+        >
+          <mat-option *ngFor="let option of product.options" [value]="option">
+            {{ option }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ng-container>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-flat-button color="primary" (click)="addToCart()">
-      <mat-icon>add_shopping_cart</mat-icon> Agregar al carrito |
-      {{ product.price | currency }}
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="addToCart()"
+      matBadge="%"
+      [matBadgeHidden]="!isNumber(product.withDiscount)"
+      disabled="{{
+        product.options.length > 0 ? buttonDisabled : !buttonDisabled
+      }}"
+    >
+      <mat-icon>add_shopping_cart</mat-icon> Agregar al carrito
     </button>
   </mat-card-actions>
 </mat-card>
