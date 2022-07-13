@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<!-- Carousel -->
+<mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let imagen of images; let i = index">
+    <img src="{{ imagen.path }}" class="d-block w-100" alt="..." />
+    <div class="carousel-caption d-none d-md-block">
+      <h5>"{{ imagen.title }}</h5>
+      <p>"{{ imagen.description }}</p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>

@@ -1,0 +1,136 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: WSAppEvaluation
+  description: Servicio destinado a proveer la información necesaria para la tienda de evaluación de CDT - 11/jul/2022. Disponible en [http://swagger.io](http://swagger.io)
+  contact:
+    email: "alan.garduno@elektra.com.mx"
+host: heroku.com
+basePath: /api/ecommerce/
+schemes:
+  - https
+produces:
+  - application/json
+tags:
+  - name: "Productos"
+    description: "CRUD de productos disponibles en la tienda"
+
+paths:
+  /producto/{idProducto}:
+    get:
+      description: Obtener la información de un producto en específico
+      tags:
+        - Productos
+      parameters:
+        - in: path
+          name: idProducto
+          description: Identificador único del producto para consumir su información.
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Ejecucion correcta
+          schema:
+            $ref: "#/definitions/responseProducto"
+          examples:
+            application/json: |-
+              {
+                "codigo": "200.Canales-De-Terceros-WSAppEvaluation.1001",
+                "mensaje": "Ejecucion correcta",
+                "folio": "8564270261",
+                "resultado": {
+                  "estatus": true
+                }
+              }
+        400:
+          description: Solicitud incorrecta
+          schema:
+            $ref: "#/definitions/error"
+          examples:
+            application/json: |-
+              {
+                "codigo": "400.Canales-De-Terceros-WSAppEvaluation.1002",
+                "mensaje": "Petición no válida, favor de validar su información",
+                "folio": "22920190128134317232",
+                "info": "https://baz-developer.bancoazteca.com.mx/errors#400.Canales-De-Terceros-WSAppEvaluation.1001",
+                "detalles": [
+                  "Atributo numeroTelefono requerido"
+                ]
+              }
+        404:
+          description: Recurso no encontrado
+          schema:
+            $ref: "#/definitions/error"
+          examples:
+            application/json: |-
+              {
+                "codigo": "404.Canales-De-Terceros-WSAppEvaluation.1003",
+                "mensaje": "No se encontró información",
+                "folio": "22920190128134317233",
+                "info": "https://baz-developer.bancoazteca.com.mx/errors#404.Canales-De-Terceros-WSAppEvaluation.1002",
+                "detalles": [
+                  "No se obtuvo información relacionada al identificador del usuario proporcionado"
+                ]
+              }
+        500:
+          description: Error interno de servidor
+          schema:
+            $ref: "#/definitions/error"
+          examples:
+            application/json: |-
+              {
+                "codigo": "500.Canales-De-Terceros-WSAppEvaluation.1004",
+                "mensaje": "Problemas al procesar su solicitud favor de contactar a su administrador",
+                "folio": "22920181120162829642",
+                "info": "https://baz-developer.bancoazteca.com.mx/errors#500.Canales-De-Terceros-WSAppEvaluation.1003",
+                "detalles": [
+                  "Problemas internos"
+                ]
+              }
+
+definitions:
+  responseProducto:
+    type: object
+    properties:
+      codigo:
+        type: string
+        description: Código operación
+        example: 200.Canales Externos WSAppEvaluation
+      mensaje:
+        type: string
+        description: Descripción de la operación
+        example: Ejecucion correcta
+      folio:
+        type: string
+        description: Folio de la operación
+        example: 8564270261
+      resultado:
+        $ref: "#/definitions/resultadoProducto"
+
+  resultadoProducto:
+    type: object
+    properties:
+      estatus:
+        description: estatus de la respuesta  true o  false
+        type: boolean
+        example: true
+
+  error:
+    type: object
+    properties:
+      codigo:
+        type: string
+        description: Código del error.
+      mensaje:
+        type: string
+        description: Descripción del error.
+      folio:
+        type: string
+        description: Número de folio de la operación.
+      info:
+        type: string
+        description: Rutas de ayuda para atender el error.
+      detalles:
+        type: array
+        items:
+          type: string
