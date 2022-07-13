@@ -6,10 +6,10 @@ import { Product } from 'src/app/pages/products/interface/product.interface';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ShoppingCartService {
 
   constructor(private http:HttpClient) { }
-  private apiURL = 'http://localhost:3000/';
   products:Product[] = [];
 
   private cartSubject = new Subject<Product[]>();
@@ -47,15 +47,24 @@ export class ShoppingCartService {
 /* A private method that calculates the quantity of products in the cart. */
   private quantityProducts():void {
     const quantity = this.products.length;
+    localStorage.setItem('quantity', quantity.toString());
+    console.log(quantity);
     this.quantitySubject.next(quantity);
   }
 
 /* A private method that calculates the total price of the products in the cart. */
   private calcTotal(): void {
-    const total = this.products.reduce((sum, product) => sum += product.price, 0);
+    const total = this.products.reduce((sum, product) => sum += this.isNumber(product.withDiscount) ? product.withDiscount:product.price, 0);
+    localStorage.setItem('total', total.toString());
     this.totalSubject.next(total);
   }
 
+  /**
+   * If the type of the value is a number, return true, otherwise return false.
+   * @param {any} val - The value to check.
+   * @returns A boolean value.
+   */
+  public isNumber(val:any): boolean { return typeof val === 'number'; }
 
 }
 
