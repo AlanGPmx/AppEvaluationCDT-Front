@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../interface/product.interface';
 import { ShoppingCartService } from '../../../shared/services/shopping-cart.service';
+import { LocationStrategy } from '@angular/common';
+
 
 @Component({
   providers: [ShoppingCartService],
@@ -14,12 +16,15 @@ export class ProductComponent implements OnInit {
   buttonDisabled!: boolean;
   showLinkMore!: boolean;
 
-  constructor(
-    private shoppingCartService: ShoppingCartService,
-  ) {}
+  constructor(private shoppingCartService: ShoppingCartService, private url: LocationStrategy) {}
 
   ngOnInit(): void {
     this.buttonDisabled = true;
+
+    if (this.url.path() === '/product'+this.product.id) {
+      this.showLinkMore = false;  // WIP: show link more everywhere except in single view
+    }
+    this.showLinkMore = true;
   }
 
   addToCart(): void {
