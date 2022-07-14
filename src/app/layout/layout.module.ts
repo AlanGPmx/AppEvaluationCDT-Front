@@ -5,6 +5,7 @@ import { LayoutComponent } from './layout.component';
 import { HeaderModule } from 'src/app/shared/components/header/header.module';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { ProductsModule } from '../pages/products/products.module';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 @NgModule({
   declarations: [LayoutComponent],
@@ -13,7 +14,8 @@ import { ProductsModule } from '../pages/products/products.module';
     CommonModule,
     HeaderModule,
     MdbCarouselModule,
-    ProductsModule
+    ProductsModule,
+    IvyCarouselModule
   ],
   exports: [LayoutComponent]
 })
