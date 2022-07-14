@@ -11,8 +11,8 @@
   <mat-card-content>
     <p>
       {{ product.description | slice: 0:120 }}...<br />
-      <ng-container *ngIf="true">
-        <a href="http://">Ver más...</a>
+      <ng-container *ngIf="showLinkMore">
+        <a [routerLink]="['/product', product.id]">Ver más...</a>
       </ng-container>
     </p>
     <ng-container *ngIf="product.options.length > 0">
