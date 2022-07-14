@@ -1,1 +1,77 @@
-oK
+<ng-container *ngIf="showLinkMore">
+  <app-header></app-header>
+</ng-container>
+
+<div class="container mt-5">
+  <div class="card mb-3" style="width: 100%">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ product.img }}" class="img-fluid rounded-start" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="card-title">{{ product.name }}</h1>
+          <ng-container *ngIf="isNumber(product.withDiscount)">
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
+            >
+              ¡Promoción!
+            </span>
+          </ng-container>
+          <p>
+            <ng-container
+              *ngIf="isNumber(product.withDiscount); else normalPrice"
+            >
+              De <s>{{ product.price | currency }}</s> a tan solo
+              <b class="fs-3">{{
+                product.withDiscount | currency
+              }}</b></ng-container
+            >
+            <ng-template #normalPrice
+              ><p class="fs-3">{{ product.price | currency }}</p></ng-template
+            >
+          </p>
+          <p class="card-text">
+            {{ product.description }}
+          </p>
+          <p>
+            <ng-container *ngIf="product.options.length > 0">
+              <mat-form-field appearance="fill">
+                <mat-label>Elige una opción...</mat-label>
+                <mat-select
+                  name="options"
+                  (valueChange)="allowAddToCart()"
+                  (selectionChange)="changeOption($event.value)"
+                >
+                  <mat-option
+                    *ngFor="let option of product.options"
+                    [value]="option"
+                  >
+                    {{ option }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </ng-container>
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Stock: {{ product.stock }}</small>
+          </p>
+          <p>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="addToCart()"
+              matBadge="%"
+              [matBadgeHidden]="!isNumber(product.withDiscount)"
+              disabled="{{
+                product.options.length > 0 ? buttonDisabled : !buttonDisabled
+              }}"
+            >
+              <mat-icon>add_shopping_cart</mat-icon> Agregar al carrito
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
