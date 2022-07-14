@@ -6,7 +6,8 @@ export interface Product {
   description: string;
   categoryId: number;
   stock: number;
-  img: string;
+  img?: string;
+  path?: string;
   options: string[];
   selected?: string;
 }
