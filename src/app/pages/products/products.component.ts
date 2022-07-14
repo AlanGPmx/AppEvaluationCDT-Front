@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
-/* A function that is called when the user clicks on the add to cart button. */
+  /* A function that is called when the user clicks on the add to cart button. */
   public addToCart(product: Product): void {
     this.ShoppingCartService.updateCart(product);
   }
