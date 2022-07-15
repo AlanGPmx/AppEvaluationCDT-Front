@@ -12,7 +12,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serverAPI": "json-server --watch server/db.json --port 3000",
-    "postinstall": "ng build --output-path app-evaluation-cdt -aot --prod"
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
