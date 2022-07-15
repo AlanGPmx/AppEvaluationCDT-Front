@@ -18,12 +18,12 @@ export class ProductsService {
 
   /* Getting the product from the API with the ID. */
   getProduct(id:number): Observable<any> {
-    return this.http.get<Product[]>(this.apiURL+'products/'+id);
+    return this.http.get<Product[]>(this.apiURL+'productos/buscar?id='+id);
   }
 
-/* Getting the product from the API with the ID. */
+  /* Getting the best sellers from the API. */
   getBestSellers(): Observable<any> {
-    return this.http.get<Product[]>(this.apiURL+'bestSellers');
+    return this.http.get<Product[]>(this.apiURL+'productos/mas-vendidos');
 }
 
 }
