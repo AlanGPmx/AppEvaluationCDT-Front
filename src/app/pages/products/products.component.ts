@@ -4,6 +4,7 @@ import { Product } from './interface/product.interface';
 import { ProductsService } from './services/products.service';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 import { LocationStrategy } from '@angular/common';
+import { Respuesta } from './interface/respuesta.interface';
 
 @Component({
   selector: 'app-products',
@@ -16,13 +17,13 @@ export class ProductsComponent implements OnInit {
     private ShoppingCartService: ShoppingCartService,
     private url: LocationStrategy
   ) {}
-  products!: Product[];
+  res!: Respuesta;
   showMenu!: boolean;
 
   ngOnInit(): void {
-    this.productsService
+      this.productsService
       .getProducts()
-      .pipe(tap((products: Product[]) => (this.products = products)))
+      .pipe(tap((res: Respuesta) => (this.res = res)))
       .subscribe();
 
     if (this.url.path() === '/products') {
