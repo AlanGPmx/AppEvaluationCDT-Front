@@ -6,12 +6,12 @@
   <div class="card mb-3" style="width: 100%">
     <div class="row g-0">
       <div class="col-md-4">
-        <img src="{{ product.img }}" class="img-fluid rounded-start" />
+        <img src="{{ res.resultado.img }}" class="img-fluid rounded-start" />
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h1 class="card-title">{{ product.name }}</h1>
-          <ng-container *ngIf="isNumber(product.withDiscount)">
+          <h1 class="card-title">{{ res.resultado.name }}</h1>
+          <ng-container *ngIf="isNumber(res.resultado.withDiscount)">
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning"
             >
@@ -20,22 +20,22 @@
           </ng-container>
           <p>
             <ng-container
-              *ngIf="isNumber(product.withDiscount); else normalPrice"
+              *ngIf="isNumber(res.resultado.withDiscount); else normalPrice"
             >
-              De <s>{{ product.price | currency }}</s> a tan solo
+              De <s>{{ res.resultado.price | currency }}</s> a tan solo
               <b class="fs-3">{{
-                product.withDiscount | currency
+                res.resultado.withDiscount | currency
               }}</b></ng-container
             >
             <ng-template #normalPrice
-              ><p class="fs-3">{{ product.price | currency }}</p></ng-template
+              ><p class="fs-3">{{ res.resultado.price | currency }}</p></ng-template
             >
           </p>
           <p class="card-text">
-            {{ product.description }}
+            {{ res.resultado.description }}
           </p>
           <p>
-            <ng-container *ngIf="product.options.length > 0">
+            <ng-container *ngIf="res.resultado.options">
               <mat-form-field appearance="fill">
                 <mat-label>Elige una opción...</mat-label>
                 <mat-select
@@ -44,7 +44,7 @@
                   (selectionChange)="changeOption($event.value)"
                 >
                   <mat-option
-                    *ngFor="let option of product.options"
+                    *ngFor="let option of parse2JSON(res.resultado.options)"
                     [value]="option"
                   >
                     {{ option }}
@@ -54,7 +54,7 @@
             </ng-container>
           </p>
           <p class="card-text">
-            <small class="text-muted">Stock: {{ product.stock }}</small>
+            <small class="text-muted">Stock: {{ res.resultado.stock }}</small>
           </p>
           <p>
             <button
@@ -62,9 +62,9 @@
               color="primary"
               (click)="addToCart()"
               matBadge="%"
-              [matBadgeHidden]="!isNumber(product.withDiscount)"
+              [matBadgeHidden]="!isNumber(res.resultado.withDiscount)"
               disabled="{{
-                product.options.length > 0 ? buttonDisabled : !buttonDisabled
+                res.resultado.options ? buttonDisabled : !buttonDisabled
               }}"
             >
               <mat-icon>add_shopping_cart</mat-icon> Agregar al carrito

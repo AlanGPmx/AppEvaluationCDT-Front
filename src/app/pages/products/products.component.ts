@@ -31,6 +31,10 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  parse2JSON(str: string): any{
+    return (typeof str === null) ? [] : JSON.parse(str);
+  }
+
   /* A function that is called when the user clicks on the add to cart button. */
   public addToCart(product: Product): void {
     this.ShoppingCartService.updateCart(product);
