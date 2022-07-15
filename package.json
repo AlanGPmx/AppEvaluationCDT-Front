@@ -12,16 +12,16 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serverAPI": "json-server --watch server/db.json --port 3000",
-    "postinstall": "ng build --output-path AppEvaluationCDT-Front -aot --prod"
+    "postinstall": "ng build --output-path app-evaluation-cdt -aot --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
     "@angular/cdk": "^14.0.4",
-    "@angular/common": "^14.0.0",
     "@angular/cli": "^14.0.6",
-    "@angular/compiler-cli": "^14.0.6",
+    "@angular/common": "^14.0.0",
     "@angular/compiler": "^14.0.0",
+    "@angular/compiler-cli": "^14.0.6",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
     "@angular/material": "^14.0.4",
@@ -30,11 +30,13 @@
     "@angular/router": "^14.0.0",
     "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
     "mdb-angular-ui-kit": "^2.3.0",
     "mercadopago": "^1.5.14",
-    "typescript": "~4.7.2",
+    "path": "^0.12.7",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "typescript": "~4.7.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
