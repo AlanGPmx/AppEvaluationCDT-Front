@@ -10,7 +10,7 @@
   <img mat-card-md-image src="{{ product.img }}" />
   <mat-card-content>
     <p>
-      {{ product.description | slice: 0:120 }}...<br />
+      {{ product.description | slice: 0:200 }}...<br />
       <ng-container *ngIf="showLinkMore">
         <a [routerLink]="['/product', product.id]">Ver más...</a>
       </ng-container>
