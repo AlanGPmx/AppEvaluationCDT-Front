@@ -8,6 +8,6 @@ export interface Product {
   stock: number;
   img?: string;
   path?: string;
-  options: string[];
+  options: string;
   selected?: string;
 }
