@@ -15,7 +15,7 @@
         <a [routerLink]="['/product', product.id]">Ver más...</a>
       </ng-container>
     </p>
-    <ng-container *ngIf="product.options.length > 0">
+    <ng-container *ngIf="product.options">
       <mat-form-field appearance="fill">
         <mat-label>Elige una opción...</mat-label>
         <mat-select
@@ -23,7 +23,7 @@
           (valueChange)="allowAddToCart()"
           (selectionChange)="changeOption($event.value)"
         >
-          <mat-option *ngFor="let option of product.options" [value]="option">
+          <mat-option *ngFor="let option of parse2JSON(product.options)" [value]="option">
             {{ option }}
           </mat-option>
         </mat-select>
@@ -38,7 +38,7 @@
       matBadge="%"
       [matBadgeHidden]="!isNumber(product.withDiscount)"
       disabled="{{
-        product.options.length > 0 ? buttonDisabled : !buttonDisabled
+        product.options ? buttonDisabled : !buttonDisabled
       }}"
     >
       <mat-icon>add_shopping_cart</mat-icon> Agregar al carrito

@@ -39,6 +39,10 @@ export class ProductComponent implements OnInit {
     this.buttonDisabled = false;
   }
 
+  parse2JSON(str: string): any{
+    return (typeof str === null) ? [] : JSON.parse(str);
+  }
+
   /**
    * If the type of the value is a number, return true, otherwise return false.
    * @param {any} val - The value to check.
