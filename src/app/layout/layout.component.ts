@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { tap } from 'rxjs';
 import { Product } from '../pages/products/interface/product.interface';
+import { Respuesta } from '../pages/products/interface/respuesta.interface';
 import { ProductsService } from '../pages/products/services/products.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { ProductsService } from '../pages/products/services/products.service';
 export class LayoutComponent implements OnInit {
   constructor(private productsService: ProductsService) {}
 
-  bestSellers!: Product[];
+  bestSellersRes!: Respuesta;
 
   images = [
     {
@@ -36,20 +37,8 @@ export class LayoutComponent implements OnInit {
       .getBestSellers()
       .pipe(
         tap(
-          (bestSellers: Product[]) =>
-            (this.bestSellers = bestSellers.map((obj) => {
-              return {
-                id: obj.id,
-                name: obj.name,
-                price: obj.price,
-                withDiscount: obj.withDiscount,
-                description: obj.description,
-                categoryId: obj.categoryId,
-                stock: obj.stock,
-                path: obj.img,
-                options: obj.options,
-              };
-            }))
+          (bestSellersRes: Respuesta) =>
+            (this.bestSellersRes = bestSellersRes)
         )
       )
       .subscribe();
