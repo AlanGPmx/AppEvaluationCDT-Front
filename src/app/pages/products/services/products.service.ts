@@ -8,7 +8,7 @@ import { Product } from '../interface/product.interface';
 })
 export class ProductsService {
   constructor(private http: HttpClient) {}
-  private apiURL = 'http://cecyt3-ipn.com/CDT/index.php/productos/';
+  private apiURL = 'https://cecyt3-ipn.com/CDT/index.php/productos/';
 
   /* Getting the products from the API. */
   getProducts(): Observable<any> {
