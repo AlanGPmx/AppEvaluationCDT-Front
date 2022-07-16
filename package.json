@@ -7,12 +7,12 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serverAPI": "json-server --watch server/db.json --port 3000",
-    "postinstall": "ng build"
+    "heroku-postbuild": "ng build"
   },
   "private": true,
   "dependencies": {
