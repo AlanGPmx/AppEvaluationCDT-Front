@@ -1,13 +1,17 @@
 {
   "name": "app-evaluation",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.14.x",
+    "npm": "8.5.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serverAPI": "json-server --watch server/db.json --port 3000",
+    "serverAPI": "json-server --watch server/db.json --port 3000"
   },
   "private": true,
   "dependencies": {
