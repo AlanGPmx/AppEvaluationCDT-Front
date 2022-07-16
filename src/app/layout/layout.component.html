@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<!-- Carousel -->
+<mdb-carousel [controls]="true" [indicators]="true" [animation]="'fade'">
+  <mdb-carousel-item *ngFor="let imagen of images; let i = index">
+    <img src="{{ imagen.path }}" class="d-block w-100" alt="..." />
+    <div class="carousel-caption d-none d-md-block">
+      <h5>"{{ imagen.title }}</h5>
+      <p>"{{ imagen.description }}</p>
+    </div>
+  </mdb-carousel-item>
+</mdb-carousel>
+
+<div class="">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <hr class="y-4" />
+      <p class="fs-1 text-center">Más vendidos</p>
+      <carousel [images]="bestSellersRes.resultado.productos" [cellsToShow]="3" [loop]="true" [autoplay]="true"> </carousel>
+      <hr class="y-4" />
+    </div>
+    <div class="col-md-12">
+      <app-products></app-products>
+    </div>
+  </div>
+</div>

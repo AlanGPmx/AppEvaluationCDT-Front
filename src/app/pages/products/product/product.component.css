@@ -1,0 +1,19 @@
+.card {
+  margin: 5px;
+  min-height: 410px;
+  min-width: 400px;
+  max-width: 400px;
+  height: 100%;
+}
+
+button {
+  width: 95%;
+  position: absolute;
+  right: 10px;
+  left: 10px;
+  bottom: 10px;
+}
+
+.mat-form-field{
+  width:100% !important;
+}
