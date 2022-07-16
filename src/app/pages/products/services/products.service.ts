@@ -8,20 +8,20 @@ import { Product } from '../interface/product.interface';
 })
 export class ProductsService {
   constructor(private http: HttpClient) {}
-  private apiURL = 'http://localhost:8000/api/v1/';
+  private apiURL = 'http://cecyt3-ipn.com/CDT/index.php/productos/';
 
   /* Getting the products from the API. */
   getProducts(): Observable<any> {
-    return this.http.get<Product[]>(this.apiURL + 'productos');
+    return this.http.get<Product[]>(this.apiURL + 'obtenerProductos');
   }
 
   /* Getting the product from the API with the ID. */
   getProduct(id: number): Observable<any> {
-    return this.http.get<Product[]>(this.apiURL + 'productos/buscar?id=' + id);
+    return this.http.get<Product[]>(this.apiURL + 'obtenerProducto/' + id);
   }
 
   /* Getting the best sellers from the API. */
   getBestSellers(): Observable<any> {
-    return this.http.get<Product[]>(this.apiURL + 'productos/mas-vendidos');
+    return this.http.get<Product[]>(this.apiURL + 'obtenerProductosMasVendidos');
   }
 }
